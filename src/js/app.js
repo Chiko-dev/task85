@@ -4,7 +4,6 @@ window.addEventListener("DOMContentLoaded", () => {
   // This block will be executed once the page is loaded and ready
 
   const ul = document.querySelector("ul");
-  let li = document.createElement('li');
 
 
   function checkStatus(response) {
@@ -34,6 +33,7 @@ window.addEventListener("DOMContentLoaded", () => {
         }
 
         pokemon.map((pokeman) => {
+          let li = document.createElement('li');
           li.textContent = pokeman;
           ul.appendChild(li);
         })
@@ -41,6 +41,8 @@ window.addEventListener("DOMContentLoaded", () => {
         
       })
   }
+
+  
 
   fetchPokemon();
 
