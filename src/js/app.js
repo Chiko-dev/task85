@@ -4,6 +4,8 @@ window.addEventListener("DOMContentLoaded", () => {
   // This block will be executed once the page is loaded and ready
 
   const ul = document.querySelector("ul");
+  let li = document.createElement('li');
+
 
   function checkStatus(response) {
     if (response.status >= 200 && response.status < 300) {
@@ -21,21 +23,26 @@ window.addEventListener("DOMContentLoaded", () => {
 
   const fetchPokemon = () => {
     let url = `https://pokeapi.co/api/v2/pokemon?limit=10`;
-    fetch(url, {
-      method: "GET",
-      headers: {
-        "Content-Type": "application/json"
-      }
-    })
+    fetch(url)
       .then(checkStatus)
       .then(toJSON)
       .then((data) => {
         console.log(data);
-        const pokemon = {};
-        pokemon['name'] = data.name;
+        const pokemon = [];
+        for (let i = 0; i < data.results.length; i++){
+          pokemon.push(data.results[i].name);
+        }
+
+        pokemon.map((pokeman) => {
+          li.textContent = pokeman;
+          ul.appendChild(li);
+        })
         console.log(pokemon);
+        
       })
   }
 
   fetchPokemon();
+
+
 });
