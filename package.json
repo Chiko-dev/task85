@@ -67,6 +67,7 @@
   },
   "target": "web",
   "dependencies": {
+    "axios": "^0.24.0",
     "node": "^16.13.1"
   }
 }

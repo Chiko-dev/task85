@@ -17,21 +17,25 @@ window.addEventListener("DOMContentLoaded", () => {
     return response.json();
   }
 
-  let pokeAPI = `https://pokeapi.co/api/v2/ability`;
 
-  fetch(pokeAPI, {
-    method: "post",
-    headers: {
-      Accept: "application/json",
-      "Content-Type": "application/json"
-    },
-    body: JSON.stringify({
-      name: "Name: "
+
+  const fetchPokemon = () => {
+    let url = `https://pokeapi.co/api/v2/pokemon?limit=10`;
+    fetch(url, {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json"
+      }
     })
-  })
-    
-    .then(toJSON)
-    .then((data) => {
-      console.log(data);
-    })
+      .then(checkStatus)
+      .then(toJSON)
+      .then((data) => {
+        console.log(data);
+        const pokemon = {};
+        pokemon['name'] = data.name;
+        console.log(pokemon);
+      })
+  }
+
+  fetchPokemon();
 });
